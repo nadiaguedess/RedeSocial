@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="RedeSocial.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+     <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="css/blog-home.css" rel="stylesheet"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="time_line.aspx">Rede Social</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                   
+                    <%
+                        
+                        try
+                        {
+                            if (!bool.Parse(Session["logado"].ToString()))
+                            {
+                                Response.Write("<li><a href='index.aspx'>Entrar</a></li><li><a href='registrar.aspx'>Registrar</a></li>");
+                            }
+                            else
+                            {
+                                Response.Write("<li><a href ='perfil.aspx'>Meu Perfil</a></li>");
+                                Response.Write("<li style='padding-top:12px;'><form method='POST' action='pesquisar.aspx' name='formPesquisa'> " +
+                                    "<input id='txtPesquisa' name='txtPesquisa' type />" +
+                                    "<input id='Submit1' type='submit' value='Pesquisar' /><form1></li>");
+                            }
+                            
+                            
+                            
+                        }
+                        catch 
+                        {
+                            Response.Write("<li><a href='index.aspx'>Entrar</a></li><li><a href='registrar.aspx'>Registrar</a></li>");
+                           
+                        }
+                        
+                        
+                        
+                         %>
+
+
+                    <li>
+                        <a href="#">Contato</a>
+                    </li>
+                </ul>
+
+                <%
+                    try
+                    {
+                        Response.Write("<p style='text-align:right; padding-top:15px; color:#ff0000;'>Olá " + Session["nome_usuario"].ToString() + "<a href='index.aspx?logout=true'>(sair)</a></p>");
+                    }
+                    catch 
+                    { }
+                    
+                     %>
+
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+        <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
